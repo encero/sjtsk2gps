@@ -1,13 +1,13 @@
 package sjtsk2gps
 
 import (
-	"testing"
-	"math"
 	"fmt"
+	"math"
+	"testing"
 )
 
 func TestConvert(t *testing.T) {
-	la, lo, _ := Convert(-515244.88, -1166620.04 , 0)
+	la, lo, _ := Convert(-515244.88, -1166620.04, 0)
 
 	fmt.Printf("%f x %f\n", la, lo)
 
@@ -16,8 +16,7 @@ func TestConvert(t *testing.T) {
 }
 
 func equalWithPrecision(t *testing.T, a float64, b float64) {
-	if math.Abs(a - b) > 0.000001 {
+	if math.Abs(a-b) > 0.000001 {
 		t.Fatal(fmt.Printf("%f != %f", a, b))
 	}
 }
-

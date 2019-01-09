@@ -1,12 +1,11 @@
+// Package sjtsk2gps provides utility function which converts
+// czech S-JTSK coordinates (used in RUIAN)to GPS representation.
 package sjtsk2gps
 
 import "math"
 
-
-/*
-	rewritten javascript code from http://martin.hinner.info/geo/
-
- */
+// Convert accept czech S-JTSK coordinates and convert them to GPS
+// it is rewritten javascript code from http://martin.hinner.info/geo/
 func Convert(X float64, Y float64, H float64) (float64, float64, float64) {
 
 	if X < 0 && Y < 0 {
@@ -48,15 +47,13 @@ func Convert(X float64, Y float64, H float64) (float64, float64, float64) {
 	t := math.Exp(2 / alfa * math.Log((1+sinU)/cosU/k))
 	pom := (t - float64(1)) / (t + float64(1))
 
-	sinB := pom
-
 	for {
-		sinB = pom
+		sinB := pom
 
 		pom = t * math.Exp(e*math.Log((1+e*sinB)/(1-e*sinB)))
 		pom = (pom - 1) / (pom + 1)
 
-		if ! (math.Abs(pom-sinB) > 1e-15) {
+		if !(math.Abs(pom-sinB) > 1e-15) {
 			break
 		}
 	}
